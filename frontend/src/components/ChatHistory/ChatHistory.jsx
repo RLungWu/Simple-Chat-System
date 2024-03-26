@@ -1,11 +1,10 @@
 import React, { Component } from "react";
+import Message from "../Message";
 import "./ChatHistory.scss";
 
 class ChatHistory extends Component {
   render() {
-    const messages = this.props.chatHistory.map((msg, index) => (
-      <p key={index}>{msg.data}</p>
-    ));
+    const messages = this.props.chatHistory.map(msg => <Message message={msg.data} /> );
 
     return (
       <div className="ChatHistory">
