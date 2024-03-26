@@ -25,6 +25,48 @@ var upgrader = websocket.Upgrader{
 func reader(conn *websocket.Conn){
 	for{
 		messageType, p, err := conn.ReadMessage()
-		
+		if err != nil{
+			log.Println(err)
+			return
+		}
+
+		//Log out the message
+		fmt.Println(string(p))
+
+		if err := conn.WriteMessage(messageType, p); err != nil{
+			log.Println(err)
+			return
+		}
 	}
+
+}
+
+
+//Define Websocket Points
+func serveWs(w http.ResponseWriter, r *http.Request){
+	fmt.Println(r.Host)
+
+	//Upgrade to Websocket connection
+	ws, err := upgrader.Upgrade(w, r, nil)
+	if err != nil{
+		log.Println(err)
+	}
+
+	//Liten to new message and connect with our websocket
+	reader(ws)
+}
+
+func setupRoutes(){
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request){
+		fmt.Fprintf(w, "Simple Server")
+	})
+
+	//Connect '/ws' to serveWs
+	http.HandleFunc("/ws", serveWs)
+}
+
+func main(){
+	fmt.Println("Chat App")
+	setupRoutes()
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
