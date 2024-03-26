@@ -22,10 +22,10 @@ docker run -it -p 8080:8080 backend
 ```
 
 ## Demo Pictures for Frontend
-![螢幕擷取畫面 2024-03-26 234224](https://hackmd.io/_uploads/BkmIy_gkR.png)
+![Frontend](https://hackmd.io/_uploads/BkmIy_gkR.png)
 
 ## Demo Pictures for Backend
-![螢幕擷取畫面 2024-03-26 235557](https://hackmd.io/_uploads/rk-mx_x1C.png)
+![Backend](https://hackmd.io/_uploads/rk-mx_x1C.png)
 
 
 ### Description
